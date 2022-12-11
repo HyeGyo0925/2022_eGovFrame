@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hg.mappers.member">
+
+	<!-- 회원가입 -->
+	<insert id="register">
+	insert into db_hg.mymember(userId, userPass, userName)
+		values(#{userId}, #{userPass}, #{userName})
+	</insert>
+
+	<select id="login" resultType="com.hg.spring.domain.MemberVO">
+	select
+		userId, userName, userPass
+	from
+		db_hg.mymember
+	where userId = #{userId}
+		and userPass = #{userPass}
+	</select>
+
+	<!-- 로그인(암호화 적용) -->
+	<select id="loginBcrypt" resultType="com.hg.spring.domain.MemberVO">
+		select
+			userId, userName, userPass
+		from
+			db_hg.mymember
+		where
+			userId = #{userId}
+		
+	</select>
+</mapper>
